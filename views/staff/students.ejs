@@ -1,0 +1,53 @@
+<% layout('layouts/staffBoiler') %>
+
+<h1>All the students</h1>
+<br>
+<div class="row justify-content-around">
+<% for(let s of students) {%> 
+    <div class="card" style="width: 18rem; display: inline-block;">
+        
+        <div class="card-body text-center">
+        <h5 class="card-title"><%= s.name %></h5>
+        </div>
+        <ul class="list-group list-group-flush">
+        <li class="list-group-item"><b>CGPA:</b> <%= s.cgpa %></li>
+        <li class="list-group-item"><b>PRN:</b> <%= s.prn %></li>
+        <li class="list-group-item"><b>Branch:</b> <%= s.branch %></li>
+        <li class="list-group-item">
+            <b>Placement Status: </b>
+            <div class="d-inline alert alert-<%= (s.isPlaced === false) ? 'danger' : 'success' %>" 
+                role="alert" style=" margin-left: 5px; padding: 5px;"><i class="bi bi-<%= (s.isPlaced === false) ? 'x' : 'check' %>-lg"></i></div>             
+        </li>
+        <li class="list-group-item"><b>Placed in:</b> <%= s.company %></li>
+        </ul>
+        <div class="card-body text-center">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#a<%=s._id%>" title="Other Information">
+            <i class="bi bi-file-earmark-text-fill"></i>
+          </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="a<%=s._id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><%= s.name %>'s Information </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group" style="text-align: left;">
+                  <li class="list-group-item"><b>College Email ID:</b> <%= s.college_email %> </li>
+                  <li class="list-group-item"><b>Personal Email ID:</b> <%= s.personal_email %> </li>
+                  <li class="list-group-item"><b>Contact No.:</b> <%= s.phone %> </li>
+                  <li class="list-group-item"><b>10th percentage:</b> <%= s.tenth %> </li>
+                  <li class="list-group-item"><b>12th percentage:</b> <%= s.twelfth %> </li>            
+                </ul>
+            </div>
+            </div>
+        </div>
+        </div>
+            <a class="btn btn-primary" href="<%= s.resume %>" role="button" title="Resume"><i class="bi bi-file-earmark-person-fill"></i></a>
+            <a class="btn btn-primary" href="/staff/<%= currentUser._id %>/<%= s._id%>/editStu" role="button" title="edit"><i class="bi bi-pencil-fill"></i></a>
+        </div>
+    </div>
+<% } %> 
+</div>

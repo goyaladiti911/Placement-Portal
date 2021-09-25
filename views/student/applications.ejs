@@ -1,0 +1,49 @@
+<% layout('layouts/stuBoiler') %>    
+<div class="container mt-5">
+    <h1 class="text-center">My Applications</h1>
+    <div class="row justify-content-around">
+        <% for(let c of companies) {%> 
+         
+          <div class="card mb-3" style="width: 18rem; display: inline-block;">
+              <div class="card-body text-center">
+              <h5 class="card-title"><%= c.name %></h5>
+              </div>
+              <ul class="list-group list-group-flush">
+              <li class="list-group-item"><b>Role:</b> <%= c.role %></li>
+              <li class="list-group-item"><b>Package:</b> <%= c.package %> LPA</li>
+              <li class="list-group-item"><b>Date:</b> <%= c.date %></li>
+              <li class="list-group-item">
+                <b>For:</b> 
+                <% for(var i=0; i < c.branch.length; i++) { %>
+                <%= c.branch[i] %> 
+                <% } %> 
+              </li>
+              </ul>
+                <div class="card-body text-center">      
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#a<%=c._id%>" title="Hiring Information">
+                      <i class="bi bi-file-earmark-text-fill"></i>
+                  </button>
+  
+                  <!-- Modal -->
+                  <div class="modal fade" id="a<%=c._id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                      <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel"><%= c.name %> Hiring Information </h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <ul class="list-group" style="text-align: left;">
+                          <li class="list-group-item"><b>Location:</b> <%= c.location %> </li>
+                          <li class="list-group-item"><b>Percentage cut-off (cgpa):</b> <%= c.eligibility %> </li>
+                          <li class="list-group-item"><b>Job Description:</b><br> <%=c.hiringInfo%> </li>                             
+                        </ul>                        
+                      </div>
+                      </div>
+                  </div>
+                  </div>
+                </div>
+            </div>
+            <% } %>
+        </div> 
+</div>

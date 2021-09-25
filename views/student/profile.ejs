@@ -1,0 +1,88 @@
+<% layout('layouts/stuBoiler') %>
+ 
+    
+    <div class="container mt-5">
+        <h1 class="text-center">This is my profile!</h1>      
+      <div class="row justify-content-around mt-3 mb-5">
+        <div class="col-3">
+            <label for="package" class="form-label">Package</label>
+            <select class="form-select" aria-label="Default select example" id="package">
+                <option selected>All</option>
+                <option value="4.5">&gt; 4.5Lpa</option>
+                <option value="10">&gt; 10Lpa</option>
+                <option value="20">&gt; 22Lpa</option>
+              </select>
+          </div>
+        <div class="col-3">
+            <label for="role" class="form-label">Role</label>
+            <select class="form-select" aria-label="Default select example" id="role">
+                <option selected>All</option>
+                <option value="frontendD">frontend developer</option>
+                <option value="backendD">backend developer</option>
+                <option value="fullstack">full stack developer</option>
+              </select>
+        </div>
+        <div class="col-3">
+            <label for="eligibility" class="form-label">Eligibility Criteria (CGPA)</label>
+            <select class="form-select" aria-label="Default select example" id="eligibility">
+                <option selected>All</option>
+                <option value="6">&gt; 6</option>
+                <option value="7">&gt; 7</option>
+                <option value="8">&gt; 8</option>
+              </select>
+        </div>
+      </div>
+      <div class="row justify-content-around">
+        <% for(let c of companies) {%> 
+         
+          <div class="card mb-3" style="width: 18rem; display: inline-block;">
+              <div class="card-body text-center">
+              <h5 class="card-title"><%= c.name %></h5>
+              </div>
+              <ul class="list-group list-group-flush">
+              <li class="list-group-item"><b>Role:</b> <%= c.role %></li>
+              <li class="list-group-item"><b>Package:</b> <%= c.package %> LPA</li>
+              <li class="list-group-item"><b>Date:</b> <%= c.date %></li>
+              <li class="list-group-item">
+                <b>For:</b> 
+                <% for(var i=0; i < c.branch.length; i++) { %>
+                <%= c.branch[i] %> 
+                <% } %> 
+              </li>
+              </ul>
+                <div class="card-body text-center">
+                  <!--This form is for the apply functionality-->
+                  <form action="/student/<%= id %>/<%=c._id%>" method="POST" class="d-inline">
+                    <button class="btn btn-primary" title="apply">Apply</button>
+                  </form>    
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#a<%=c._id%>" title="Hiring Information">
+                      <i class="bi bi-file-earmark-text-fill"></i>
+                  </button>
+  
+                  <!-- Modal -->
+                  <div class="modal fade" id="a<%=c._id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                      <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel"><%= c.name %> Hiring Information </h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <ul class="list-group" style="text-align: left;">
+                          <li class="list-group-item"><b>Location:</b> <%= c.location %> </li>
+                          <li class="list-group-item"><b>Percentage cut-off (cgpa):</b> <%= c.eligibility %> </li>
+                          <li class="list-group-item"><b>Job Description:</b><br> <%=c.hiringInfo%> </li>                             
+                        </ul>                        
+                      </div>
+                      </div>
+                  </div>
+                  </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+            
+      </div>
+ 
+    
+

@@ -1,0 +1,60 @@
+<% layout('layouts/staffBoiler') %>
+
+<div class="container mt-5">
+  <div class="row">
+    <h1 class="text-center">Edit the information for <%= student.name %> </h1>
+    <div class="col-6 offset-3">
+      <form action="/staff/<%= currentUser._id %>/students/<%=student._id%>?_method=PUT" method="POST" novalidate class="validatedForm row g-3">
+        <div class="col-md-6">
+          <label for="cgpa" class="form-label">Current CGPA (percentage):</label>
+          <input type="number" step=".01" class="form-control" id="cgpa" name="student[cgpa]" value="<%= student.cgpa %>" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="prn" class="form-label">PRN:</label>
+          <input type="string" class="form-control" id="prn" name="student[prn]" value="<%= student.prn %>" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-12">
+          <label class="form-label" for="branch">Select Branch: </label>
+          <select class="form-select" id="branch" name="student[branch]" aria-label="Default select example" required>
+            <% for(let branch of branches){ %> 
+              <option value="<%= branch %>" <%= student.branch === branch ? 'selected' : ''%> ><%= branch %></option>
+              <% } %>           
+          </select>
+          <div class="valid-feedback">
+            Looks good!
+          </div> 
+        </div>        
+        <div class="col-md-6">
+            <label class="form-label" for="status">Placement status: </label>
+            <select class="form-select" id="status" name="student[isPlaced]" aria-label="Default select example" required>
+              <% for(let s of status) {%> 
+                <option value="<%= s %>" <%= student.isPlaced.toString() === s ? 'selected' : ''%> ><%= s %></option>
+              <% } %>   
+            </select>
+            <div class="valid-feedback">
+              Looks good!
+            </div>  
+        </div>
+        <div class="col-md-6">
+          <label for="company" class="form-label">Placed in:</label>
+          <input type="string" class="form-control" id="company" name="student[company]" value="<%= student.company %>" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-12 mb-3">
+          <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>   
+</div>
+<br>
+<a class="btn btn-primary" href="/staff/<%= currentUser._id %>/student" role="button"><i class="bi bi-arrow-bar-left"></i> Go back</a>      
+

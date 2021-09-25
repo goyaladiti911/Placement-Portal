@@ -1,0 +1,27 @@
+<% layout('layouts/compBoiler') %>
+
+    <div class="card col-6 offset-3 mt-5" >
+        
+        <div class="card-body text-center">
+            <h1 class="card-title"><%= c.name %></h1>
+        </div>
+        <ul class="list-group list-group-flush">
+        <li class="list-group-item"><b>Role:</b> <%= c.role %></li>
+        <li class="list-group-item"><b>Package:</b> <%= c.package %></li>
+        <li class="list-group-item">
+            <b>Branches Allowed:</b> 
+            <% for(var i=0; i < c.branch.length; i++) { %>
+            <%= c.branch[i] %> 
+            <% } %> 
+        </li>
+        <li class="list-group-item"><b>Locations:</b> <%= c.location %> </li>
+        <li class="list-group-item"><b>Eligibility Criteria:</b> <%= c.eligibility %> % CGPA </li>
+        <li class="list-group-item"><b>Date for the upcoming assessment:</b> <%= c.date %> </li>
+        <li class="list-group-item"><b>Job Description and Other Information:</b><br> <%= c.hiringInfo %></li>
+        </ul>
+        <div class="card-body text-center">         
+           <a class="btn btn-primary" href="/company/<%= c._id %>/editinfo" role="button"><i class="bi bi-pencil-fill"></i> Edit Profile</a>            
+        </div>
+    </div>
+
+ 

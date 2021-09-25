@@ -1,0 +1,92 @@
+<% layout('layouts/stuBoiler') %>
+<div class="container mt-5">
+    <div class="row">
+        <h1 class="text-center">My Profile</h1>
+        <div class="col-6 offset-3">
+            <form class="row g-3 validatedForm" action="/student/<%=s._id%>?_method=PUT" method="POST" novalidate>
+                <div class="col-md-6">
+                  <label for="fullname" class="form-label">Fullname</label>
+                  <input type="text" class="form-control" id="fullname" name="student[name]" value='<%= s.name %>' required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="prn" class="form-label">PRN</label>
+                  <input type="string" class="form-control" id="prn" value="<%= s.prn %>" name="student[prn]" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="branch" class="form-label">Branch</label>
+                  <select class="form-select" id="branch" name="student[branch]" required>
+                    <% for(let branch of branches){ %> 
+                      <option value="<%= branch %>" <%= s.branch === branch ? 'selected' : ''%> ><%= branch %></option>
+                      <% } %>
+                  </select>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div> 
+                </div>                
+                <div class="col-md-6">
+                  <label for="phone" class="form-label">Phone Number</label>
+                  <input type="string" class="form-control" id="phone" value="<%= s.phone %>" name="student[phone]" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="personal" class="form-label">Personal Email ID</label>
+                  <input type="string" class="form-control" id="personal" value="<%= s.personal_email %>" name="student[personal_email]" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="college" class="form-label">College Email ID</label>
+                  <input type="string" class="form-control" id="college" value="<%= s.college_email %>" name="student[college_email]" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="tenth" class="form-label">10th Percentage</label>
+                  <input type="number" step=".01" class="form-control" id="tenth" name="student[tenth]" value="<%= s.tenth %>" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div> 
+                <div class="col-md-4">
+                  <label for="twelfth" class="form-label">12th Percentage</label>
+                  <input type="number" step=".01" class="form-control" id="twelfth" name="student[twelfth]" value="<%= s.twelfth %>" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>                
+                <div class="col-md-4">
+                  <label for="cgpa" class="form-label">CGPA (%)</label>
+                  <input type="number" step=".01" class="form-control" id="cgpa" name="student[cgpa]" value="<%= s.cgpa %>" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div>
+                    <label for="resume" class="form-label">Resume</label>
+                    <input class="form-control" type="file" id="resume">
+                </div>
+                <!-- <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">
+                      Check me out
+                    </label>
+                  </div>
+                </div> -->
+                <div class="col-12 mb-3">
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+              </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+<% layout('layouts/staffBoiler') %>
+
+<h1>Edit the information for <%= company.name %> </h1>
+<div class="container">
+    <form action="/staff/<%= currentUser._id %>/companies/<%= company._id %>?_method=PUT" method="POST" novalidate class="validatedForm">
+        <div class="mb-3">
+          <label for="date" class="form-label">Enter date for the next round:</label>
+          <input type="text" class="form-control" id="date" name="company[date]" value="<%= company.date %>" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="package">Enter the package:</label>
+          <input type="number" step=".01" class="form-control" id="package" name="company[package]" value="<%= company.package %>" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>      
+        </div>        
+        <div class="mb-3">
+            <label class="form-label" for="role">Enter the job role:</label>
+            <input type="text" class="form-control" id="role" name="company[role]" value="<%= company.role%>" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>      
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="eligibility">Enter the percentage cut-off:</label>
+          <input type="number" step=".01" class="form-control" id="eligibility" name="company[eligibility]" value="<%= company.eligibility %>" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>      
+        </div> 
+        <div class="mb-3">
+          <label class="form-label" for="location">Enter the location:</label>
+          <input type="text" class="form-control" id="location" name="company[location]" value="<%= company.location%>" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>      
+      </div> 
+        <div class="mb-3">
+          <label class="form-label">Select the branches allowed: </label>
+          <% for(var i=0;i<branches.length;i++) {%>
+          <div class="form-check">
+            <input 
+                  class="form-check-input" 
+                  type="checkbox" 
+                  value="<%=branches[i]%>" 
+                  id="<%=branches[i]%>" 
+                  name="company[branch]" 
+                  <%= company.branch.includes(branches[i]) ? 'checked' : '' %> 
+            >
+            <label class="form-check-label" for="<%=branches[i]%>">
+              <%=branches[i]%>
+            </label>
+          </div>
+          <% } %> 
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="info">Enter the information about the hiring process:</label>
+            <textarea class="form-control" id="info" name="company[hiringInfo]" required><%= company.hiringInfo %></textarea>
+            <div class="valid-feedback">
+              Looks good!
+            </div>  
+        </div>
+        <button type="submit" class="btn btn-primary"><i class="bi bi-person-check"></i> Save</button>
+      </form>
+</div>
+
+<br>
+<a class="btn btn-primary" href="/staff/<%= currentUser._id %>/company" role="button"><i class="bi bi-arrow-bar-left"></i> Go back</a>      
+
