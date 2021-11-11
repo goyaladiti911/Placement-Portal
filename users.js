@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV !== "production"){
+    require('dotenv').config();
+}
+
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -8,6 +12,7 @@ const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+const mongoSanitize = require('express-mongo-sanitize');
 
 const Company = require('./models/company');
 const Student = require('./models/student');
@@ -18,7 +23,12 @@ const staffRoutes = require('./routes/staff');
 const studentRoutes = require('./routes/student');
 const companyRoutes = require('./routes/company');
 
-mongoose.connect('mongodb://localhost:27017/placementcell', {
+const MongoDBStore = require("connect-mongo")(session);
+
+const dbURL = process.env.DB_URL || 'mongodb://localhost:27017/placementcell';
+// 'mongodb://localhost:27017/placementcell'
+//'mongodb+srv://admin-aditi:youareincorrect@placementcell.sxkyg.mongodb.net/placementcell'
+mongoose.connect(dbURL, {
     useNewUrlParser: true, 
     useUnifiedTopology: true
 });
@@ -38,9 +48,24 @@ app.set('views', path.join(__dirname,"views"));
 app.use(express.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname,'public')))
+app.use(mongoSanitize());
+
+const secret = process.env.SECRET || 'somesecretthisis';
+
+const store = new MongoDBStore({
+    url: dbURL,
+    secret,
+    touchAfter: 24 * 3600
+});
+
+store.on("error",function (e) {
+    console.log('Session Store Error', e);
+})
 
 const sessionConfig = {
-    secret: 'somesecretthisis',
+    store,
+    name: 'session',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {

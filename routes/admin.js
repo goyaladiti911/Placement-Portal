@@ -98,7 +98,7 @@ router.post('/registerStaff', catchAsync(async (req, res) => {
             isStaff: true
         });
         const regStaff = await Staff.register(newStaff, staff.password);
-        console.log(regStaff);
+        //console.log(regStaff);
         req.flash('success', 'Successfully created the staff profile!');
         res.redirect('/admin');
     } catch (e) {

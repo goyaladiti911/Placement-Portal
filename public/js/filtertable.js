@@ -10,7 +10,7 @@ $(document).ready(function () {
         fixedHeader: true,
         bLengthChange: false,
         bPaginate: false,
-        bFilter: false,
+        
         initComplete: function () {
             var api = this.api();
  
