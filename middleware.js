@@ -6,12 +6,22 @@ module.exports.isLoggedIn = (req, res, next) => {
     next();
 };
 
+module.exports.isStaff = (req, res, next) => {
+    if (req.user.isStaff === true && req.user._id == req.params.id) {
+        return next();
+    }
+    
+    req.flash('error', 'You must login to excess this page!');
+    res.redirect('/login');
+};
+
 module.exports.isStudent = (req, res, next) => {
     if (req.user.isStudent === true && req.user._id == req.params.id) {
         return next();
     }
+    
     req.flash('error', 'You must login to excess this page!');
-    res.redirect('/stulogin');
+    res.redirect('/login');
 };
 
 module.exports.isCompany = (req, res, next) => {
@@ -19,14 +29,8 @@ module.exports.isCompany = (req, res, next) => {
         return next();
     }
     req.flash('error', 'You must login to excess this page!');
-    res.redirect('/complogin');
+    res.redirect('/login');
 };
     
-module.exports.isStaff = (req, res, next) => {
-    if (req.user.isStaff === true && req.user._id == req.params.id) {
-        return next();
-    }
-    req.flash('error', 'You must login to excess this page!');
-    res.redirect('/stafflogin');
-};
+
        

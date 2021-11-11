@@ -1,0 +1,234 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* #loginpage {
+    /* background-color: #FFF9F9;  */
+    /* background-image: url("https://www.transparenttextures.com/patterns/inspiration-geometry.png"); */
+    /* background-image: url("https://image.freepik.com/free-vector/flat-geometric-background_23-2148967370.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; */
+    /* #FAF2F2 */
+/* } */
+
+#logo1 {
+    margin: 3rem 0 3rem 3rem;
+    width: 550px;
+    height: auto;
+}
+
+#homenav {
+    background-color: #C4161C;
+}
+
+
+
+#homenav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.7rem 1rem;
+    margin: 0 0.5rem;
+    font-weight: 500;
+}
+
+#homenav a:hover {
+    background-color: #AF1C1C;
+}
+
+h2, h3, h5 {
+    font-weight: 700;
+}
+
+p {
+    font-weight: 500;
+}
+
+#about-us {
+    padding: 5rem 0 8rem 0;
+}
+
+.aboutus {
+    text-align: center;
+    margin-top: 6rem;
+}
+
+.aboutus p {
+    margin: 2rem 8rem;
+    line-height: 2.5rem;
+}
+
+/* .next-btn {
+    background: #C4161C;
+    border-radius: 25px;
+    color: white;
+    width: 180px;
+    height: 52px;
+} */
+
+#placements {
+    background-color: #FEF1F1;
+    text-align: center;
+    padding: 8rem 0; 
+}
+
+#placements img {
+    margin: 4rem;
+    width: 190px;
+    height: 190px;
+}
+
+#footer {
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+    line-height: 2.0rem;
+}
+
+#footer h2, h5 {
+    margin-bottom: 2rem;
+}
+
+#footer ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    
+}
+
+#footer ul li a{
+    font-weight: 500;
+    text-decoration: none;
+    color: black;
+}
+
+#footer ul li a:hover {
+    color: #C4161C;
+}
+
+#footer i{
+    color: #C4161C;
+}
+
+#login_tab {
+    /* background-color: #FEF1F1; */
+    border-radius: 2rem;
+    margin-top: 6rem;
+}
+
+.btn-login {
+    /* background-color: #F54646; */
+    background-color: #C4161C;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+}
+
+.btn-login:hover {
+    color: white;
+    background-color: #AF1C1C;
+}
+
+#logo {
+    border-radius: 50%;
+    width: 20%;
+    margin-left: 35%;
+    margin-bottom: 5%;
+}
+
+/* #myTab {
+    margin-bottom: 10%;    
+} */
+
+#myTab .nav-link {
+    width: 101.41px;
+}
+
+#myTab li button{
+    color: black;
+}
+
+#myTab li .active {
+    background-color: #C4161C;
+    color: white;
+}
+
+img[alt="login"] {
+    /* border-radius: 0.8rem;*/
+    margin-left: 20%; 
+    /* max-width: 100%; */
+
+    width: 420px;
+    height: 420px;
+}
+
+
+.see-more-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+  
+.see-more-btn .btn {
+      width: 12rem;
+      height: 4rem;
+      text-decoration: none;
+      position: relative;
+      display: flex;
+      justify-content: space-around;
+      align-items: center; }
+      .btn:hover .btn-bg {
+        width: 10rem; }
+      .btn:hover .btn-text {
+        color: #ffe; }
+      .btn:hover .arrow {
+        transform: translateX(1rem); }
+      .btn:hover .arrow-line-1 {
+        width: 2rem; }
+      .btn-bg {
+        width: 2.5rem;
+        height: 2.5rem;
+        background-color: #C4161C;
+        border-radius: 5rem;
+        position: absolute;
+        left: 0.7rem;
+        transition: width .2s; }
+      .btn-text {
+        font-size: 1.2rem;
+        /* text-transform: uppercase; */
+        color: black;
+        z-index: 10; }
+      .btn .arrow {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform .2s; }
+        .btn .arrow-line {
+          height: .1rem;
+          background-color: #ffe;
+          position: absolute;
+          transform-origin: right; }
+        .btn .arrow-line-1 {
+          width: 0;
+          transform: translateX(-0.7rem);
+          transition: width .2s; }
+        .btn .arrow-line-2 {
+          width: 0.5rem;
+          transform: rotateZ(45deg); }
+        .btn .arrow-line-3 {
+          width: 0.5rem;
+          transform: rotateZ(-45deg); }
+
+.card {
+    margin: 5rem 1rem 0 1rem;
+}
+        
+.card ul {
+    text-align: left;
+}
+
+.edit-form h1 {
+    font-size: 2rem;
+    margin: 3rem 0;
+}
+
+.edit-form form {
+    padding: 0 3rem;
+}

@@ -95,35 +95,41 @@ app.use((req, res, next) => {
     next();
 })
 
+//landing page
+app.get('/', (req, res) => {
+    res.render('landing');
+})
+
 //login
 app.get('/login', (req,res) => {
-    res.render('login/login');
+    res.render('login');
 })
 //studentlogin
-app.get('/stulogin', (req, res) => {
-    res.render('login/stulogin');
-})
-app.post('/stulogin', passport.authenticate('student-local',{failureFlash: true,failureRedirect: '/stulogin'}),  (req, res) => {
+// app.get('/stulogin', (req, res) => {
+//     res.render('login/stulogin');
+// })
+app.post('/stulogin', passport.authenticate('student-local',{failureFlash: true,failureRedirect: '/login'}),  (req, res) => {
     req.flash('success', 'Welcome');
     res.redirect(`/student/${req.user._id}`)
 })
 
 //companylogin
-app.get('/complogin', (req, res) => {
-    res.render('login/complogin');
-})
-app.post('/complogin', passport.authenticate('company-local',{failureFlash: true,failureRedirect: '/complogin'}),  (req, res) => {
+// app.get('/complogin', (req, res) => {
+//     res.render('login/complogin');
+// })
+app.post('/complogin', passport.authenticate('company-local',{failureFlash: true,failureRedirect: '/login'}),  (req, res) => {
     req.flash('success', 'Welcome');
     res.redirect(`/company/${req.user._id}`)
 })
 
 //stafflogin
-app.get('/stafflogin', (req, res) => {
-    res.render('login/stafflogin');
-})
-app.post('/stafflogin', passport.authenticate('staff-local',{failureFlash: true,failureRedirect: '/stafflogin'}),  (req, res) => {
+// app.get('/stafflogin', (req, res) => {
+//     res.render('login/stafflogin');
+// })
+app.post('/stafflogin', passport.authenticate('staff-local',{failureFlash: true,failureRedirect: '/login'}),  (req, res) => {
+    
     req.flash('success', 'Welcome');
-    res.redirect(`/staff/${req.user._id}/student`)
+    res.redirect(`/staff/${req.user._id}`)
 })
 
 //logout

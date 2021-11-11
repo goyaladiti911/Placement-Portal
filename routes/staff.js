@@ -34,44 +34,49 @@ const status = ['true', 'false'];
 //     res.render('staff/staff', {students, companies})
 // }))
 
-router.get('/student', isLoggedIn, isStaff, catchAsync(async(req, res)=> { 
+router.get('/', isLoggedIn, catchAsync(async(req, res) => {
+    const students = await Student.find({});
+    res.render('staff/status', {students})
+}))
+
+router.get('/student', isLoggedIn, catchAsync(async(req, res)=> { 
     const students = await Student.find({});
     res.render('staff/students', {students})
 }))
 
-router.get('/company', isLoggedIn, isStaff, catchAsync(async(req, res)=> { 
+router.get('/company', isLoggedIn, catchAsync(async(req, res)=> { 
     const companies = await Company.find({});
     res.render('staff/companies', {companies})
 }))
 
 
-router.get('/:sid/editStu', isLoggedIn, isStaff, catchAsync (async (req, res) => {
+router.get('/:sid/editStu', isLoggedIn, catchAsync (async (req, res) => {
     const {sid} = req.params;
     const student = await Student.findById(sid);    
     res.render('staff/editStuCard', {student, branches, status})
 }))
 
-router.get('/:cid/editComp', isLoggedIn, isStaff, catchAsync(async (req, res) => {
+router.get('/:cid/editComp', isLoggedIn, catchAsync(async (req, res) => {
     const {cid} = req.params;
     const company = await Company.findById(cid);
     res.render('staff/editCard', {company, branches})
 }))
 
-router.put('/students/:sid', isLoggedIn, isStaff, catchAsync(async (req, res) => {
+router.put('/students/:sid', isLoggedIn, catchAsync(async (req, res) => {
     const {id,sid} = req.params;
     const student = await Student.findByIdAndUpdate(sid,{...req.body.student}); 
     req.flash('success','Successfully updated the student profile!')   
     res.redirect(`/staff/${id}/student`);
 }))
 
-router.put('/companies/:cid', isLoggedIn, isStaff, catchAsync(async (req, res) => {
+router.put('/companies/:cid', isLoggedIn, catchAsync(async (req, res) => {
     const {id,cid} = req.params;
     const company = await Company.findByIdAndUpdate(cid,{...req.body.company});
     req.flash('success','Successfully updated the company profile!')
     res.redirect(`/staff/${id}/company`);
 }))
 
-router.delete('/companies/:cid', isLoggedIn, isStaff, catchAsync(async (req, res) => {
+router.delete('/companies/:cid', isLoggedIn, catchAsync(async (req, res) => {
     const {id, cid} = req.params;
     await Company.findByIdAndDelete(cid);
     req.flash('success','Successfully deleted the company profile!') 
