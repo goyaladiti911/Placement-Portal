@@ -1,9 +1,8 @@
 <% layout('layouts/stuBoiler') %>
  
     
-    <div class="container mt-5">
-        <h1 class="text-center">This is my profile!</h1>      
-      <div class="row justify-content-around mt-3 mb-5">
+    <div class="container mt-5">     
+      <div class="row justify-content-evenly mb-3">
         <div class="col-3">
             <label for="package" class="form-label">Package</label>
             <select class="form-select" aria-label="Default select example" id="package">
@@ -32,7 +31,7 @@
               </select>
         </div>
       </div>
-      <div class="row justify-content-around">
+      <div class="row justify-content-evenly">
         <% for(let c of companies) {%> 
          
           <div class="card mb-3" style="width: 18rem; display: inline-block;">
@@ -53,9 +52,9 @@
                 <div class="card-body text-center">
                   <!--This form is for the apply functionality-->
                   <form action="/student/<%= id %>/<%=c._id%>" method="POST" class="d-inline">
-                    <button class="btn btn-primary" title="apply">Apply</button>
+                    <button class="btn btn-outline-danger" title="apply">Apply</button>
                   </form>    
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#a<%=c._id%>" title="Hiring Information">
+                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#a<%=c._id%>" title="Hiring Information">
                       <i class="bi bi-file-earmark-text-fill"></i>
                   </button>
   

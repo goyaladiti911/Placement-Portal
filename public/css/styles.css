@@ -22,7 +22,6 @@ body {
 }
 
 
-
 #homenav a {
     color: white;
     text-decoration: none;
@@ -31,9 +30,18 @@ body {
     font-weight: 500;
 }
 
-#homenav a:hover {
+#homenav a .nav-link:hover {
     background-color: #AF1C1C;
 }
+
+#homenav ul {
+    background-color: #C4161C;
+    margin-right: 3.5rem;
+}
+
+/* #homenav a .dropdown-item {
+    margin: 0;
+} */
 
 h2, h3, h5 {
     font-weight: 700;
@@ -224,6 +232,11 @@ img[alt="login"] {
     text-align: left;
 }
 
+.edit-form img {
+    width: 600px;
+    height: 600px;
+}
+
 .edit-form h1 {
     font-size: 2rem;
     margin: 3rem 0;
@@ -231,4 +244,20 @@ img[alt="login"] {
 
 .edit-form form {
     padding: 0 3rem;
+}
+
+#profile .card {
+    border: none;
+    margin-top: 0;
+}
+
+#profile .card .list-group-item {
+    border: none;
+}
+
+#profile .card ul {
+    margin: 0 5rem;
+}
+#profile .card ul li {
+    padding-bottom: 1rem;
 }

@@ -1,26 +1,34 @@
 <% layout('layouts/stuBoiler') %>
 
-    <div class="card col-6 offset-3 mt-5" >
+<div class="container edit-form" id="profile">
+    <div class="row ">
         
-        <div class="card-body text-center">
-            <h1 class="card-title"><%= s.name %></h1>
+        <div class="col-lg-6 col-md-12">
+            <div class="card">        
+                <div class="card-body text-center">
+                    <h1 class="card-title" style="margin-bottom: 1rem;"><%= s.name %></h1>
+                </div>
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>CGPA:</b> <%= s.cgpa %></li>
+                <li class="list-group-item"><b>PRN:</b> <%= s.prn %></li>
+                <li class="list-group-item"><b>Branch:</b> <%= s.branch %></li>
+                <li class="list-group-item"><b>College Email ID:</b> <%= s.college_email %> </li>
+                <li class="list-group-item"><b>Personal Email ID:</b> <%= s.personal_email %> </li>
+                <li class="list-group-item"><b>Contact No.:</b> <%= s.phone %> </li>
+                <li class="list-group-item"><b>10th percentage:</b> <%= s.tenth %> </li>
+                <li class="list-group-item"><b>12th percentage:</b> <%= s.twelfth %> </li>
+                
+                </ul>
+                <div class="card-body text-center">
+                 
+                    <a class="btn btn-login" href="<%= s.resume %>" role="button" title="Resume"><i class="bi bi-file-earmark-person-fill"></i> Resume</a>
+                    <a class="btn btn-login" href="/student/<%= currentUser._id%>/editinfo" role="button"><i class="bi bi-pencil-fill"></i> Edit Profile</a>            
+                </div>
+            </div>
         </div>
-        <ul class="list-group list-group-flush">
-        <li class="list-group-item"><b>CGPA:</b> <%= s.cgpa %></li>
-        <li class="list-group-item"><b>PRN:</b> <%= s.prn %></li>
-        <li class="list-group-item"><b>Branch:</b> <%= s.branch %></li>
-        <li class="list-group-item"><b>College Email ID:</b> <%= s.college_email %> </li>
-        <li class="list-group-item"><b>Personal Email ID:</b> <%= s.personal_email %> </li>
-        <li class="list-group-item"><b>Contact No.:</b> <%= s.phone %> </li>
-        <li class="list-group-item"><b>10th percentage:</b> <%= s.tenth %> </li>
-        <li class="list-group-item"><b>12th percentage:</b> <%= s.twelfth %> </li>
-        
-        </ul>
-        <div class="card-body text-center">
-         
-            <a class="btn btn-primary" href="<%= s.resume %>" role="button" title="Resume"><i class="bi bi-file-earmark-person-fill"></i> Resume</a>
-            <a class="btn btn-primary" href="/student/<%= currentUser._id%>/editinfo" role="button"><i class="bi bi-pencil-fill"></i> Edit Profile</a>            
+        <div class="col-lg-6 col-md-12">
+            <img src="/img/student-detail.jpg" alt="student info" class="img-fluid">
         </div>
-    </div>
-
- 
+    
+</div>
+</div>
