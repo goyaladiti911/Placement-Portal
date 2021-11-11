@@ -26,26 +26,26 @@ const validateStudent = (req, res, next) => {
 
 const branches = ['CS','IT','ENTC','MECH','CIVIL'];
 
-router.get('/', isLoggedIn, isCompany, catchAsync(async (req, res) => {
+router.get('/', isLoggedIn, catchAsync(async (req, res) => {
     const {id} = req.params;
     const company = await Company.findById(id).populate('applications');
     res.render('company/profile',{company,branches})
 }))
 
-router.get('/details', isLoggedIn, isCompany, catchAsync(async (req, res) => {
+router.get('/details', isLoggedIn, catchAsync(async (req, res) => {
     const {id} = req.params;
     const c = await Company.findById(id);
     res.render('company/details', {c})
 }))
 
-router.get('/editinfo', isLoggedIn, isCompany, catchAsync (async (req,res) => {
+router.get('/editinfo', isLoggedIn, catchAsync (async (req,res) => {
     const {id} = req.params;
     const company = await Company.findById(id);
     
     res.render('company/editInfo',{company,branches})
 }))
 
-router.put('/', isLoggedIn, isCompany, catchAsync(async (req, res) => {
+router.put('/', isLoggedIn, catchAsync(async (req, res) => {
     const {id} = req.params;
     const company = await Company.findByIdAndUpdate(id,{...req.body.company});
     req.flash('success','Successfully updated the profile!') 

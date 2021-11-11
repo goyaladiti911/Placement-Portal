@@ -1,9 +1,11 @@
 <% layout('layouts/compBoiler') %>
-
-    <div class="card col-6 offset-3 mt-5" >
+<div class="container edit-form" id="profile">
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+    <div class="card" >
         
         <div class="card-body text-center">
-            <h1 class="card-title"><%= c.name %></h1>
+            <h1 class="card-title" style="margin-bottom: 1rem;"><%= c.name %></h1>
         </div>
         <ul class="list-group list-group-flush">
         <li class="list-group-item"><b>Role:</b> <%= c.role %></li>
@@ -20,8 +22,14 @@
         <li class="list-group-item"><b>Job Description and Other Information:</b><br> <%= c.hiringInfo %></li>
         </ul>
         <div class="card-body text-center">         
-           <a class="btn btn-primary" href="/company/<%= c._id %>/editinfo" role="button"><i class="bi bi-pencil-fill"></i> Edit Profile</a>            
+           <a class="btn btn-login" href="/company/<%= c._id %>/editinfo" role="button"><i class="bi bi-pencil-fill"></i> Edit Profile</a>            
         </div>
     </div>
+</div>
+<div class="col-lg-6 col-md-12">
+    <img src="/img/student-detail.jpg" alt="company info" class="img-fluid">
+</div>
+</div>
+</div>
 
  
