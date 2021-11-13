@@ -13,6 +13,11 @@ const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const mongoSanitize = require('express-mongo-sanitize');
+// const multer = require('multer');
+
+
+
+// const upload = multer({dest: 'uploads/'});
 
 const Company = require('./models/company');
 const Student = require('./models/student');
@@ -48,6 +53,7 @@ app.set('views', path.join(__dirname,"views"));
 app.use(express.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname,'public')))
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 app.use(mongoSanitize());
 
 const secret = process.env.SECRET || 'somesecretthisis';

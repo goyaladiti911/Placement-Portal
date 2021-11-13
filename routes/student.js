@@ -6,6 +6,29 @@ const {companySchema, studentSchema} = require('../schemas.js');
 const Student = require('../models/student');
 const Company = require('../models/company');
 const {isLoggedIn, isStudent} = require('../middleware');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb){
+        cb(null, "./uploads/");
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.originalname)
+    }
+});
+
+const fileFilter = (req, file, cb) => {
+    if(file.mimetype === 'application/pdf') {
+        cb(null, true);
+    } else {
+        cb(new Error('upload a pdf file'), false);
+    }
+};
+
+const upload = multer({
+    storage: storage,
+    fileFilter: fileFilter
+});
 
 const validateCompany = (req, res, next) => {
     
@@ -52,9 +75,22 @@ router.get('/applications', isLoggedIn, isStudent,catchAsync (async (req, res) =
     res.render('student/applications',{companies})
 }))
 
-router.put('/', isLoggedIn, isStudent,catchAsync(async (req, res) => {
+router.put('/', isLoggedIn, isStudent,upload.single('resume'),catchAsync(async (req, res) => {
+    console.log(req.file);
     const {id} = req.params;
-    const student = await Student.findByIdAndUpdate(id,{...req.body.student});
+    const {name, prn, branch, phone, personal_email, college_email, tenth, twelfth, cgpa} = req.body;
+    const student = await Student.findByIdAndUpdate(id,{
+        name: name,
+        prn: prn,
+        branch: branch,
+        phone: phone,
+        personal_email: personal_email,
+        college_email: college_email,
+        tenth: tenth,
+        twelfth: twelfth,
+        cgpa: cgpa,
+        resume: req.file.path
+    });
     req.flash('success','Successfully updated the profile!') 
     res.redirect(`/student/${id}/details`);
 }))

@@ -49,8 +49,7 @@ const studentSchema = new mongoose.Schema({
         required: true
     },
     resume: {
-        data: Buffer,
-        contentType: String
+        type: String
     },
     isStudent: {
         type: Boolean,
