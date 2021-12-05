@@ -10,7 +10,7 @@ $(document).ready(function () {
         fixedHeader: true,
         bLengthChange: false,
         bPaginate: false,
-        
+        dom : 't',
         initComplete: function () {
             var api = this.api();
  
@@ -24,7 +24,7 @@ $(document).ready(function () {
                         $(api.column(colIdx).header()).index()
                     );
                     var title = $(cell).text();
-                    $(cell).html('<input type="text" placeholder="' + title + '" />');
+                    $(cell).html('<input type="text" placeholder="' + title + '" style="text-align: center;"/>');
  
                     // On every keypress in this input
                     $(

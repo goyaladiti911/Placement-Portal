@@ -49,7 +49,8 @@ const studentSchema = new mongoose.Schema({
         required: true
     },
     resume: {
-        type: String
+        type: String,
+        default: 'NA'
     },
     isStudent: {
         type: Boolean,
